@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
 <head>
-  <title>Just for You ❤️</title>
+  <title>Just for You</title>
 
   <link href="https://fonts.googleapis.com/css2?family=Dancing+Script:wght@600&display=swap" rel="stylesheet">
 
@@ -9,21 +9,21 @@
     body {
       margin: 0;
       font-family: 'Dancing Script', cursive;
+    }
+
+    .start {
       text-align: center;
-      background: #fff;
-      overflow-x: hidden;
+      padding-top: 80px;
     }
 
     h1 {
-      margin-top: 50px;
-      font-size: 46px;
+      font-size: 44px;
       color: #c2185b;
     }
 
     p {
       font-size: 26px;
       color: #7a003c;
-      margin: 12px;
     }
 
     button {
@@ -39,37 +39,43 @@
     #yes { background:#ff4d88; color:white; }
     #no  { background:#eee; color:#555; position:absolute; }
 
-    /* AFTER YES */
+    /* YES SCREEN */
     .yes-screen {
-      min-height: 100vh;
-      background: url('bg.jpg') center/cover no-repeat;
+      width: 100vw;
+      height: 100vh;
+
+      /* THIS IS THE IMPORTANT PART */
+      background-image: url('background.jpg');
+      background-size: cover;
+      background-position: center;
+      background-repeat: no-repeat;
+
       display: flex;
-      flex-direction: column;
-      justify-content: center;
       align-items: center;
-      backdrop-filter: brightness(0.8);
+      justify-content: center;
     }
 
-    .overlay {
-      background: rgba(0,0,0,0.35);
-      padding: 25px;
+    .content {
+      background: rgba(0,0,0,0.45);
+      padding: 30px;
       border-radius: 20px;
+      text-align: center;
       color: white;
       max-width: 90%;
     }
 
-    .overlay p {
-      color: #fff;
+    .content p {
+      color: white;
       font-size: 26px;
     }
 
     .ring {
       font-size: 60px;
       margin: 15px;
-      animation: ringPulse 1.6s infinite;
+      animation: pulse 1.6s infinite;
     }
 
-    @keyframes ringPulse {
+    @keyframes pulse {
       0% { transform: scale(1); }
       50% { transform: scale(1.15); }
       100% { transform: scale(1); }
@@ -88,30 +94,32 @@
       height: 70px;
       border-radius: 12px;
       cursor: pointer;
-      box-shadow: 0 0 10px #fff;
+      box-shadow: 0 0 10px white;
     }
   </style>
 </head>
 
 <body>
 
-<h1>Naa Bangaram ❤️</h1>
+<div class="start">
+  <h1>Naa Bangaram</h1>
 
-<p>
-Nee navvu naa jeevitham lo velugu ✨<br>
-Nee presence naa heart ki peace 💕
-</p>
+  <p>
+    Nee navvu naa jeevitham lo velugu<br>
+    Nuvvu lekapothe naa life empty
+  </p>
 
-<p>Life motham naa tho undagalava? 💌</p>
+  <p>Life motham naa tho untava?</p>
 
-<button id="yes" onclick="yesClick()">Yes ❤️</button>
-<button id="no" onmouseover="moveNo()">No 😜</button>
+  <button id="yes" onclick="yesClick()">Yes</button>
+  <button id="no" onmouseover="moveNo()">No</button>
+</div>
 
 <audio id="music"></audio>
 
 <script>
 function playSong(song) {
-  let audio = document.getElementById("music");
+  const audio = document.getElementById("music");
   audio.src = song;
   audio.play();
 }
@@ -119,23 +127,23 @@ function playSong(song) {
 function yesClick() {
   document.body.innerHTML = `
     <div class="yes-screen">
-      <div class="overlay">
-        <h1>She said YES 🥹</h1>
+      <div class="content">
+        <h1>She said YES</h1>
 
         <div class="ring">💍</div>
 
         <p>
-          Nuvvu naa life loki vachina roju nundi,<br>
-          naa world motham marchipoyindi.
+          Nuvvu naa life loki vachina roju nundi<br>
+          naa heart ki meaning dorikindi
         </p>
 
         <p>
-          Naa santosham nuvve,<br>
-          naa badha kuda nuvve artham chesukuntav.
+          Naa happiness nuvve<br>
+          naa weakness kuda nuvve
         </p>
 
         <p>
-          Forever ane word ki meaning nuvvu ❤️
+          Forever ante nuvvu ❤️
         </p>
 
         <div class="album">
@@ -152,7 +160,7 @@ function yesClick() {
 function moveNo() {
   let x = Math.random() * (window.innerWidth - 120);
   let y = Math.random() * (window.innerHeight - 60);
-  let noBtn = document.getElementById("no");
+  const noBtn = document.getElementById("no");
   noBtn.style.left = x + "px";
   noBtn.style.top = y + "px";
 }
