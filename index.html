@@ -3,12 +3,11 @@
 <head>
   <title>Just for You ❤️</title>
 
-  <!-- Romantic Font -->
   <link href="https://fonts.googleapis.com/css2?family=Dancing+Script:wght@600&display=swap" rel="stylesheet">
 
   <style>
     body {
-      background-color: #ffd6e0;
+      background: linear-gradient(#ffe6ee, #ffd1dc);
       text-align: center;
       font-family: 'Dancing Script', cursive;
       overflow: hidden;
@@ -16,7 +15,7 @@
     }
 
     h1 {
-      margin-top: 80px;
+      margin-top: 50px;
       color: #c2185b;
       font-size: 48px;
     }
@@ -30,7 +29,7 @@
     button {
       font-size: 22px;
       padding: 12px 30px;
-      margin: 25px;
+      margin: 15px;
       border: none;
       border-radius: 30px;
       cursor: pointer;
@@ -58,51 +57,184 @@
       0% { transform: translateY(0); opacity: 1; }
       100% { transform: translateY(-800px); opacity: 0; }
     }
+
+    .teddy { font-size: 70px; }
+    .ring { font-size: 60px; }
+
+    img {
+      width: 260px;
+      border-radius: 20px;
+      box-shadow: 0 0 25px pink;
+      margin-top: 20px;
+    }
+
+    /* Song album */
+    .album {
+      display: flex;
+      justify-content: center;
+      gap: 15px;
+      margin-top: 20px;
+      flex-wrap: wrap;
+    }
+
+    .song {
+      width: 90px;
+      height: 90px;
+      background: #ffb6c1;
+      border-radius: 15px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 14px;
+      color: #8e0038;
+      cursor: pointer;
+      box-shadow: 0 0 10px pink;
+      text-align: center;
+      padding: 5px;
+    }
+
+    /* Love Letter */
+    .letter-box {
+      width: 80%;
+      max-width: 600px;
+      height: 220px;
+      margin: 25px auto;
+      overflow: hidden;
+      background: rgba(255,255,255,0.7);
+      border-radius: 20px;
+      box-shadow: 0 0 20px pink;
+      padding: 15px;
+    }
+
+    .letter {
+      animation: scroll 35s linear infinite;
+      font-size: 24px;
+      color: #8e0038;
+      line-height: 1.6;
+    }
+
+    @keyframes scroll {
+      0% { transform: translateY(100%); }
+      100% { transform: translateY(-100%); }
+    }
   </style>
 </head>
 
 <body>
 
-<h1>Nandini my wifeyy 💖</h1>
+<h1>My Nandini 💖</h1>
 
-<p>Will you be my Valentine? 💌</p>
+<div class="teddy">🧸</div>
+<div class="ring">💍</div>
 
 <p>
-I already know the answer,<br>
-but I still want to hear it 🥺
+From the moment you entered my life,<br>
+everything started feeling warmer ✨
 </p>
 
+<p>
+My smiles found a reason,<br>
+my heart found a home — in you 🥺💗
+</p>
+
+<p>Will you be my Valentine… forever? 💌</p>
+
 <button id="yes" onclick="yesClick()">Yes ❤️</button>
-<button id="no" onmouseover="moveNo()">Can’t touch this 😜</button>
+<button id="no" onmouseover="moveNo()">No 😜</button>
+
+<audio id="music"></audio>
 
 <script>
-  function yesClick() {
-    document.body.innerHTML = `
-      <h1>Yayyy ❤️</h1>
-      <p>You just made my heart smile 💕</p>
-      <p>Happy Valentine’s Day, my love 🌹</p>
-    `;
-  }
+function playSong(song) {
+  let audio = document.getElementById("music");
+  audio.src = song;
+  audio.play();
+}
 
-  function moveNo() {
-    let x = Math.random() * (window.innerWidth - 120);
-    let y = Math.random() * (window.innerHeight - 60);
-    let noBtn = document.getElementById("no");
-    noBtn.style.left = x + "px";
-    noBtn.style.top = y + "px";
-  }
+function yesClick() {
+  document.body.style.background =
+    "linear-gradient(to bottom, #ffb6c1, #ff69b4)";
 
-  // Floating hearts
+  document.body.innerHTML = `
+    <h1>She said YES 🥹💖</h1>
+
+    <p>
+      At this moment,<br>
+      my heart forgot how to breathe 💓
+    </p>
+
+    <p>
+      Your smile is my happiness,<br>
+      your tears are my responsibility 🤍
+    </p>
+
+    <div class="ring">💍</div>
+
+    <img src="love.jpg">
+
+    <div class="letter-box">
+      <div class="letter">
+        My love,<br><br>
+
+        I don’t know how to explain what you mean to me,<br>
+        but I know one thing — my world feels right when you are in it.<br><br>
+
+        I promise to stand by you on your best days,<br>
+        and even closer on your worst ones.<br><br>
+
+        Your dreams will be my dreams,<br>
+        your tears will be mine to wipe,<br>
+        and your smile will always be my biggest achievement.<br><br>
+
+        I don’t want a perfect story,<br>
+        I just want *our* story — real, messy, beautiful, forever.<br><br>
+
+        Hold my hand today,<br>
+        tomorrow,<br>
+        and for all the tomorrows yet to come.<br><br>
+
+        I love you… endlessly ❤️
+      </div>
+    </div>
+
+    <p>Our Songs 🎶</p>
+
+    <div class="album">
+      <div class="song" onclick="playSong('kaisehua.mp3')">Kaise Hua</div>
+      <div class="song" onclick="playSong('kesariya.mp3')">Kesariya</div>
+      <div class="song" onclick="playSong('ranjha.mp3')">Ranjha</div>
+      <div class="song" onclick="playSong('shayad.mp3')">Shayad</div>
+    </div>
+  `;
+
   setInterval(() => {
     let heart = document.createElement("div");
     heart.className = "heart";
-    heart.innerHTML = "💗";
+    heart.innerHTML = "💖";
     heart.style.left = Math.random() * window.innerWidth + "px";
     heart.style.top = "100%";
     document.body.appendChild(heart);
-
     setTimeout(() => heart.remove(), 6000);
-  }, 350);
+  }, 250);
+}
+
+function moveNo() {
+  let x = Math.random() * (window.innerWidth - 120);
+  let y = Math.random() * (window.innerHeight - 60);
+  let noBtn = document.getElementById("no");
+  noBtn.style.left = x + "px";
+  noBtn.style.top = y + "px";
+}
+
+setInterval(() => {
+  let heart = document.createElement("div");
+  heart.className = "heart";
+  heart.innerHTML = "💗";
+  heart.style.left = Math.random() * window.innerWidth + "px";
+  heart.style.top = "100%";
+  document.body.appendChild(heart);
+  setTimeout(() => heart.remove(), 6000);
+}, 350);
 </script>
 
 </body>
