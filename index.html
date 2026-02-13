@@ -1,106 +1,126 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
-  <title>Just for You ❤️</title>
-  <link href="https://fonts.googleapis.com/css2?family=Dancing+Script:wght@600&display=swap" rel="stylesheet">
+<meta charset="UTF-8">
+<title>She Said YES ❤️</title>
 
-  <style>
-    body {
-      margin: 0;
-      font-family: 'Dancing Script', cursive;
-      text-align: center;
-      overflow: hidden;
-      background: linear-gradient(135deg, #ff69b4, #6ec6ff);
-    }
+<link href="https://fonts.googleapis.com/css2?family=Dancing+Script:wght@600&display=swap" rel="stylesheet">
 
-    h1 { margin-top: 70px; font-size: 48px; color: white; }
-    p  { font-size: 26px; color: white; }
+<style>
+*{
+  box-sizing:border-box;
+}
 
-    /* YES BUTTON GLOW */
-    #yes {
-      font-size: 24px;
-      padding: 14px 40px;
-      border: none;
-      border-radius: 40px;
-      cursor: pointer;
-      background: white;
-      color: #ff1493;
-      box-shadow: 0 0 20px #fff;
-      animation: glow 1.5s infinite;
-    }
+body{
+  margin:0;
+  font-family:'Dancing Script',cursive;
+  overflow:hidden;
+}
 
-    @keyframes glow {
-      0% { box-shadow: 0 0 10px #fff; }
-      50% { box-shadow: 0 0 30px #ff69b4; }
-      100% { box-shadow: 0 0 10px #fff; }
-    }
+/* COMMON BACKGROUND */
+.bg{
+  width:100vw;
+  height:100vh;
+  background:linear-gradient(135deg,#ff6fb1,#7bb7ff);
+  display:flex;
+  flex-direction:column;
+  justify-content:center;
+  align-items:center;
+  text-align:center;
+  color:white;
+  position:relative;
+}
 
-    #no {
-      font-size: 20px;
-      padding: 10px 25px;
-      border-radius: 30px;
-      border: none;
-      position: absolute;
-    }
+/* TEXT */
+h1{
+  font-size:48px;
+  margin:10px;
+}
+p{
+  font-size:26px;
+  margin:8px;
+}
 
-    /* Floating emojis */
-    .emoji {
-      position: absolute;
-      font-size: 24px;
-      animation: float 6s linear infinite;
-    }
+/* BUTTON */
+#yes{
+  margin-top:20px;
+  padding:14px 45px;
+  font-size:24px;
+  border:none;
+  border-radius:40px;
+  background:white;
+  color:#ff1493;
+  cursor:pointer;
+  animation:glow 1.4s infinite;
+}
 
-    @keyframes float {
-      from { transform: translateY(0); opacity:1; }
-      to   { transform: translateY(-900px); opacity:0; }
-    }
+@keyframes glow{
+  0%{box-shadow:0 0 10px white;}
+  50%{box-shadow:0 0 35px #ff69b4;}
+  100%{box-shadow:0 0 10px white;}
+}
 
-    /* Heart explosion */
-    .burst {
-      position: absolute;
-      font-size: 30px;
-      animation: burst 1s ease-out forwards;
-    }
+/* FLOATING EMOJIS */
+.emoji{
+  position:absolute;
+  font-size:22px;
+  animation:floatUp 6s linear infinite;
+}
 
-    @keyframes burst {
-      from { transform: scale(0); opacity:1; }
-      to   { transform: scale(3); opacity:0; }
-    }
-  </style>
+@keyframes floatUp{
+  from{transform:translateY(0);opacity:1;}
+  to{transform:translateY(-120vh);opacity:0;}
+}
+
+/* HEART BURST */
+.burst{
+  position:absolute;
+  font-size:30px;
+  animation:burst 1s ease-out forwards;
+}
+
+@keyframes burst{
+  from{transform:scale(0);opacity:1;}
+  to{transform:scale(3);opacity:0;}
+}
+</style>
 </head>
 
 <body>
 
-<h1>Naa Bangaram 💖</h1>
+<!-- FIRST SCREEN -->
+<div id="start" class="bg">
+  <h1>Naa Bangaram 💖</h1>
 
-<p>
-Nee navvu naa life lo happiness 😍<br>
-Nuvvu lekapothe naa world empty 💞
-</p>
+  <p>
+    Nee navvu naa jeevitham lo happiness 😍<br>
+    Nuvvu lekapothe naa life empty 💔
+  </p>
 
-<p>Life motham naa tho untava? 💌</p>
+  <p>Life motham naa tho untava? 💌</p>
 
-<button id="yes" onclick="yesClick()">YES ❤️</button>
-<button id="no" onmouseover="moveNo()">NO 😜</button>
+  <button id="yes" onclick="yesClick()">YES ❤️</button>
+</div>
 
 <audio id="music" src="romantic.mp3"></audio>
 
 <script>
-const emojis = ["❤️","💖","💕","😍","🥰","💞","💓","💗","💘","💝","😘","💋"];
+const emojis=["❤️","💖","💕","😍","🥰","💞","💓","💗","💘","💝","😘","💋"];
 
-function floatEmoji() {
-  const e = document.createElement("div");
-  e.className = "emoji";
-  e.innerHTML = emojis[Math.floor(Math.random()*emojis.length)];
-  e.style.left = Math.random()*window.innerWidth+"px";
-  e.style.bottom = "0px";
+/* floating emojis */
+setInterval(()=>{
+  const e=document.createElement("div");
+  e.className="emoji";
+  e.innerHTML=emojis[Math.floor(Math.random()*emojis.length)];
+  e.style.left=Math.random()*window.innerWidth+"px";
+  e.style.bottom="-30px";
   document.body.appendChild(e);
   setTimeout(()=>e.remove(),6000);
-}
-setInterval(floatEmoji,300);
+},250);
 
-function heartBurst(x,y) {
-  for(let i=0;i<15;i++){
+/* heart explosion */
+function burst(x,y){
+  for(let i=0;i<20;i++){
     const h=document.createElement("div");
     h.className="burst";
     h.innerHTML="💖";
@@ -111,31 +131,35 @@ function heartBurst(x,y) {
   }
 }
 
-function yesClick(e) {
+function yesClick(){
   document.getElementById("music").play();
+  burst(window.innerWidth/2,window.innerHeight/2);
 
-  const x = window.innerWidth/2;
-  const y = window.innerHeight/2;
-  heartBurst(x,y);
+  document.body.innerHTML=`
+    <div class="bg">
+      <h1>She said YES 😘💖</h1>
 
-  document.body.innerHTML = `
-    <h1>She said YES 😘💖</h1>
-    <p>
-      Nuvvu naa life loki vachaka<br>
-      naa heart ki meaning dorikindi 💓
-    </p>
-    <p>
-      Forever ante nuvvu ❤️<br>
-      Nenu ninnu chala premistunna 😘💋
-    </p>
+      <p>
+        Nuvvu naa life loki vachaka<br>
+        naa heart ki meaning dorikindi ❤️
+      </p>
+
+      <p>
+        Naa happiness nuvve 😍<br>
+        Naa future kuda nuvve 💞
+      </p>
+
+      <p>
+        Forever ante nuvvu 💘<br>
+        Nenu ninnu chala premistunna 😘💋
+      </p>
+
+      <p>
+        Ee life motham nee pakkane undali ani<br>
+        naa heart full ga cheptundi 💓
+      </p>
+    </div>
   `;
-}
-
-function moveNo(){
-  document.getElementById("no").style.left =
-    Math.random()*(window.innerWidth-120)+"px";
-  document.getElementById("no").style.top =
-    Math.random()*(window.innerHeight-60)+"px";
 }
 </script>
 
