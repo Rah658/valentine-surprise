@@ -10,12 +10,12 @@
       background: linear-gradient(#ffe6ee, #ffd1dc);
       text-align: center;
       font-family: 'Dancing Script', cursive;
-      overflow: hidden;
       margin: 0;
+      overflow-x: hidden;
     }
 
     h1 {
-      margin-top: 50px;
+      margin-top: 45px;
       color: #c2185b;
       font-size: 48px;
     }
@@ -36,17 +36,10 @@
       font-family: 'Dancing Script', cursive;
     }
 
-    #yes {
-      background-color: #ff4d88;
-      color: white;
-    }
+    #yes { background:#ff4d88; color:white; }
+    #no { background:#f3f3f3; color:#555; position:absolute; }
 
-    #no {
-      background-color: #f3f3f3;
-      color: #555;
-      position: absolute;
-    }
-
+    /* Hearts */
     .heart {
       position: absolute;
       font-size: 22px;
@@ -54,68 +47,61 @@
     }
 
     @keyframes float {
-      0% { transform: translateY(0); opacity: 1; }
-      100% { transform: translateY(-800px); opacity: 0; }
+      from { transform: translateY(0); opacity:1; }
+      to { transform: translateY(-800px); opacity:0; }
     }
 
-    .teddy { font-size: 70px; }
-    .ring { font-size: 60px; }
+    /* Ring animation */
+    .ring {
+      font-size: 65px;
+      animation: ringPulse 1.8s infinite;
+      margin: 15px;
+    }
 
-    img {
-      width: 260px;
-      border-radius: 20px;
-      box-shadow: 0 0 25px pink;
+    @keyframes ringPulse {
+      0% { transform: scale(1); }
+      50% { transform: scale(1.15); }
+      100% { transform: scale(1); }
+    }
+
+    /* Photo */
+    .full-photo {
+      width: 100%;
+      max-width: 520px;
+      border-radius: 18px;
+      box-shadow: 0 0 35px pink;
       margin-top: 20px;
     }
 
-    /* Song album */
-    .album {
-      display: flex;
-      justify-content: center;
-      gap: 15px;
-      margin-top: 20px;
-      flex-wrap: wrap;
-    }
-
-    .song {
-      width: 90px;
-      height: 90px;
-      background: #ffb6c1;
-      border-radius: 15px;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      font-size: 14px;
-      color: #8e0038;
-      cursor: pointer;
-      box-shadow: 0 0 10px pink;
-      text-align: center;
-      padding: 5px;
-    }
-
-    /* Love Letter */
-    .letter-box {
-      width: 80%;
-      max-width: 600px;
-      height: 220px;
-      margin: 25px auto;
-      overflow: hidden;
-      background: rgba(255,255,255,0.7);
-      border-radius: 20px;
-      box-shadow: 0 0 20px pink;
-      padding: 15px;
-    }
-
+    /* Love letter fade */
     .letter {
-      animation: scroll 35s linear infinite;
-      font-size: 24px;
-      color: #8e0038;
+      opacity: 0;
+      animation: fadeIn 4s forwards;
+      animation-delay: 2s;
+      font-size: 25px;
+      margin: 25px;
       line-height: 1.6;
     }
 
-    @keyframes scroll {
-      0% { transform: translateY(100%); }
-      100% { transform: translateY(-100%); }
+    @keyframes fadeIn {
+      to { opacity: 1; }
+    }
+
+    /* Album images */
+    .album {
+      display: flex;
+      justify-content: center;
+      gap: 14px;
+      margin: 30px;
+      flex-wrap: wrap;
+    }
+
+    .album img {
+      width: 75px;
+      height: 75px;
+      border-radius: 15px;
+      cursor: pointer;
+      box-shadow: 0 0 15px pink;
     }
   </style>
 </head>
@@ -124,20 +110,12 @@
 
 <h1>My Nandini 💖</h1>
 
-<div class="teddy">🧸</div>
-<div class="ring">💍</div>
-
 <p>
-From the moment you entered my life,<br>
-everything started feeling warmer ✨
+From the moment you came into my life,<br>
+everything started feeling right ✨
 </p>
 
-<p>
-My smiles found a reason,<br>
-my heart found a home — in you 🥺💗
-</p>
-
-<p>Will you be my Valentine… forever? 💌</p>
+<p>Will you be mine forever? 💌</p>
 
 <button id="yes" onclick="yesClick()">Yes ❤️</button>
 <button id="no" onmouseover="moveNo()">No 😜</button>
@@ -152,58 +130,43 @@ function playSong(song) {
 }
 
 function yesClick() {
+
   document.body.style.background =
-    "linear-gradient(to bottom, #ffb6c1, #ff69b4)";
+    "linear-gradient(to bottom, #ffb6c1, #ff1493)";
 
   document.body.innerHTML = `
     <h1>She said YES 🥹💖</h1>
 
-    <p>
-      At this moment,<br>
-      my heart forgot how to breathe 💓
-    </p>
-
-    <p>
-      Your smile is my happiness,<br>
-      your tears are my responsibility 🤍
-    </p>
-
     <div class="ring">💍</div>
 
-    <img src="love.jpg">
+    <p>
+      In this moment…<br>
+      my heart chose you forever 💓
+    </p>
 
-    <div class="letter-box">
-      <div class="letter">
-        My love,<br><br>
+    <img src="love.jpg" class="full-photo">
 
-        I don’t know how to explain what you mean to me,<br>
-        but I know one thing — my world feels right when you are in it.<br><br>
+    <div class="letter">
+      My love,<br><br>
+      I don’t promise a perfect life,<br>
+      but I promise a life where you are never alone.<br><br>
 
-        I promise to stand by you on your best days,<br>
-        and even closer on your worst ones.<br><br>
+      Your happiness will always be my priority,<br>
+      your tears my responsibility,<br>
+      and your smile my greatest achievement.<br><br>
 
-        Your dreams will be my dreams,<br>
-        your tears will be mine to wipe,<br>
-        and your smile will always be my biggest achievement.<br><br>
+      Walk with me today,<br>
+      tomorrow,<br>
+      and for all the tomorrows yet to come 🤍<br><br>
 
-        I don’t want a perfect story,<br>
-        I just want *our* story — real, messy, beautiful, forever.<br><br>
-
-        Hold my hand today,<br>
-        tomorrow,<br>
-        and for all the tomorrows yet to come.<br><br>
-
-        I love you… endlessly ❤️
-      </div>
+      I love you… endlessly ❤️
     </div>
 
-    <p>Our Songs 🎶</p>
-
     <div class="album">
-      <div class="song" onclick="playSong('kaisehua.mp3')">Kaise Hua</div>
-      <div class="song" onclick="playSong('kesariya.mp3')">Kesariya</div>
-      <div class="song" onclick="playSong('ranjha.mp3')">Ranjha</div>
-      <div class="song" onclick="playSong('shayad.mp3')">Shayad</div>
+      <img src="kaisehua.jpg" onclick="playSong('kaisehua.mp3')">
+      <img src="kesariya.jpg" onclick="playSong('kesariya.mp3')">
+      <img src="ranjha.jpg" onclick="playSong('ranjha.mp3')">
+      <img src="shayad.jpg" onclick="playSong('shayad.mp3')">
     </div>
   `;
 
@@ -215,7 +178,7 @@ function yesClick() {
     heart.style.top = "100%";
     document.body.appendChild(heart);
     setTimeout(() => heart.remove(), 6000);
-  }, 250);
+  }, 280);
 }
 
 function moveNo() {
