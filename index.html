@@ -7,22 +7,22 @@
 
   <style>
     body {
-      background: linear-gradient(#ffe6ee, #ffd1dc);
-      text-align: center;
-      font-family: 'Dancing Script', cursive;
       margin: 0;
+      font-family: 'Dancing Script', cursive;
+      text-align: center;
+      background: #fff;
       overflow-x: hidden;
     }
 
     h1 {
-      margin-top: 45px;
+      margin-top: 50px;
+      font-size: 46px;
       color: #c2185b;
-      font-size: 48px;
     }
 
     p {
       font-size: 26px;
-      color: #8e0038;
+      color: #7a003c;
       margin: 12px;
     }
 
@@ -37,25 +37,36 @@
     }
 
     #yes { background:#ff4d88; color:white; }
-    #no { background:#f3f3f3; color:#555; position:absolute; }
+    #no  { background:#eee; color:#555; position:absolute; }
 
-    /* Hearts */
-    .heart {
-      position: absolute;
-      font-size: 22px;
-      animation: float 6s linear infinite;
+    /* AFTER YES */
+    .yes-screen {
+      min-height: 100vh;
+      background: url('bg.jpg') center/cover no-repeat;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      backdrop-filter: brightness(0.8);
     }
 
-    @keyframes float {
-      from { transform: translateY(0); opacity:1; }
-      to { transform: translateY(-800px); opacity:0; }
+    .overlay {
+      background: rgba(0,0,0,0.35);
+      padding: 25px;
+      border-radius: 20px;
+      color: white;
+      max-width: 90%;
     }
 
-    /* Ring animation */
+    .overlay p {
+      color: #fff;
+      font-size: 26px;
+    }
+
     .ring {
-      font-size: 65px;
-      animation: ringPulse 1.8s infinite;
+      font-size: 60px;
       margin: 15px;
+      animation: ringPulse 1.6s infinite;
     }
 
     @keyframes ringPulse {
@@ -64,58 +75,34 @@
       100% { transform: scale(1); }
     }
 
-    /* Photo */
-    .full-photo {
-      width: 100%;
-      max-width: 520px;
-      border-radius: 18px;
-      box-shadow: 0 0 35px pink;
-      margin-top: 20px;
-    }
-
-    /* Love letter fade */
-    .letter {
-      opacity: 0;
-      animation: fadeIn 4s forwards;
-      animation-delay: 2s;
-      font-size: 25px;
-      margin: 25px;
-      line-height: 1.6;
-    }
-
-    @keyframes fadeIn {
-      to { opacity: 1; }
-    }
-
-    /* Album images */
     .album {
       display: flex;
+      gap: 12px;
       justify-content: center;
-      gap: 14px;
-      margin: 30px;
+      margin-top: 20px;
       flex-wrap: wrap;
     }
 
     .album img {
-      width: 75px;
-      height: 75px;
-      border-radius: 15px;
+      width: 70px;
+      height: 70px;
+      border-radius: 12px;
       cursor: pointer;
-      box-shadow: 0 0 15px pink;
+      box-shadow: 0 0 10px #fff;
     }
   </style>
 </head>
 
 <body>
 
-<h1>My Nandini 💖</h1>
+<h1>Naa Bangaram ❤️</h1>
 
 <p>
-From the moment you came into my life,<br>
-everything started feeling right ✨
+Nee navvu naa jeevitham lo velugu ✨<br>
+Nee presence naa heart ki peace 💕
 </p>
 
-<p>Will you be mine forever? 💌</p>
+<p>Life motham naa tho undagalava? 💌</p>
 
 <button id="yes" onclick="yesClick()">Yes ❤️</button>
 <button id="no" onmouseover="moveNo()">No 😜</button>
@@ -130,55 +117,36 @@ function playSong(song) {
 }
 
 function yesClick() {
-
-  document.body.style.background =
-    "linear-gradient(to bottom, #ffb6c1, #ff1493)";
-
   document.body.innerHTML = `
-    <h1>She said YES 🥹💖</h1>
+    <div class="yes-screen">
+      <div class="overlay">
+        <h1>She said YES 🥹</h1>
 
-    <div class="ring">💍</div>
+        <div class="ring">💍</div>
 
-    <p>
-      In this moment…<br>
-      my heart chose you forever 💓
-    </p>
+        <p>
+          Nuvvu naa life loki vachina roju nundi,<br>
+          naa world motham marchipoyindi.
+        </p>
 
-    <img src="love.jpg" class="full-photo">
+        <p>
+          Naa santosham nuvve,<br>
+          naa badha kuda nuvve artham chesukuntav.
+        </p>
 
-    <div class="letter">
-      My love,<br><br>
-      I don’t promise a perfect life,<br>
-      but I promise a life where you are never alone.<br><br>
+        <p>
+          Forever ane word ki meaning nuvvu ❤️
+        </p>
 
-      Your happiness will always be my priority,<br>
-      your tears my responsibility,<br>
-      and your smile my greatest achievement.<br><br>
-
-      Walk with me today,<br>
-      tomorrow,<br>
-      and for all the tomorrows yet to come 🤍<br><br>
-
-      I love you… endlessly ❤️
-    </div>
-
-    <div class="album">
-      <img src="kaisehua.jpg" onclick="playSong('kaisehua.mp3')">
-      <img src="kesariya.jpg" onclick="playSong('kesariya.mp3')">
-      <img src="ranjha.jpg" onclick="playSong('ranjha.mp3')">
-      <img src="shayad.jpg" onclick="playSong('shayad.mp3')">
+        <div class="album">
+          <img src="kaisehua.jpg" onclick="playSong('kaisehua.mp3')">
+          <img src="kesariya.jpg" onclick="playSong('kesariya.mp3')">
+          <img src="ranjha.jpg" onclick="playSong('ranjha.mp3')">
+          <img src="shayad.jpg" onclick="playSong('shayad.mp3')">
+        </div>
+      </div>
     </div>
   `;
-
-  setInterval(() => {
-    let heart = document.createElement("div");
-    heart.className = "heart";
-    heart.innerHTML = "💖";
-    heart.style.left = Math.random() * window.innerWidth + "px";
-    heart.style.top = "100%";
-    document.body.appendChild(heart);
-    setTimeout(() => heart.remove(), 6000);
-  }, 280);
 }
 
 function moveNo() {
@@ -188,16 +156,6 @@ function moveNo() {
   noBtn.style.left = x + "px";
   noBtn.style.top = y + "px";
 }
-
-setInterval(() => {
-  let heart = document.createElement("div");
-  heart.className = "heart";
-  heart.innerHTML = "💗";
-  heart.style.left = Math.random() * window.innerWidth + "px";
-  heart.style.top = "100%";
-  document.body.appendChild(heart);
-  setTimeout(() => heart.remove(), 6000);
-}, 350);
 </script>
 
 </body>
