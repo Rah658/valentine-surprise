@@ -2,165 +2,146 @@
 <html lang="en">
 <head>
 <meta charset="UTF-8">
-<title>She Said YES ❤️</title>
-
-<link href="https://fonts.googleapis.com/css2?family=Dancing+Script:wght@600&display=swap" rel="stylesheet">
-
+<title>For My Bangaram ❤️</title>
 <style>
-*{
-  box-sizing:border-box;
-}
+    body {
+        background: linear-gradient(to right, #ff758c, #ff7eb3);
+        font-family: Arial, sans-serif;
+        text-align: center;
+        color: white;
+        height: 100vh;
+        overflow: hidden;
+    }
 
-body{
-  margin:0;
-  font-family:'Dancing Script',cursive;
-  overflow:hidden;
-}
+    h1 {
+        margin-top: 100px;
+        font-size: 40px;
+    }
 
-/* COMMON BACKGROUND */
-.bg{
-  width:100vw;
-  height:100vh;
-  background:linear-gradient(135deg,#ff6fb1,#7bb7ff);
-  display:flex;
-  flex-direction:column;
-  justify-content:center;
-  align-items:center;
-  text-align:center;
-  color:white;
-  position:relative;
-}
+    #message {
+        font-size: 24px;
+        margin-top: 20px;
+        min-height: 40px;
+    }
 
-/* TEXT */
-h1{
-  font-size:48px;
-  margin:10px;
-}
-p{
-  font-size:26px;
-  margin:8px;
-}
+    button {
+        padding: 15px 30px;
+        font-size: 20px;
+        margin: 20px;
+        border: none;
+        border-radius: 10px;
+        cursor: pointer;
+        transition: 0.3s;
+    }
 
-/* BUTTON */
-#yes{
-  margin-top:20px;
-  padding:14px 45px;
-  font-size:24px;
-  border:none;
-  border-radius:40px;
-  background:white;
-  color:#ff1493;
-  cursor:pointer;
-  animation:glow 1.4s infinite;
-}
+    #yesBtn {
+        background-color: #28a745;
+        color: white;
+    }
 
-@keyframes glow{
-  0%{box-shadow:0 0 10px white;}
-  50%{box-shadow:0 0 35px #ff69b4;}
-  100%{box-shadow:0 0 10px white;}
-}
+    #noBtn {
+        background-color: #dc3545;
+        color: white;
+        position: absolute;
+    }
 
-/* FLOATING EMOJIS */
-.emoji{
-  position:absolute;
-  font-size:22px;
-  animation:floatUp 6s linear infinite;
-}
+    button:hover {
+        transform: scale(1.1);
+    }
 
-@keyframes floatUp{
-  from{transform:translateY(0);opacity:1;}
-  to{transform:translateY(-120vh);opacity:0;}
-}
+    #heart {
+        font-size: 50px;
+        display: none;
+        margin-top: 20px;
+        animation: beat 1s infinite;
+    }
 
-/* HEART BURST */
-.burst{
-  position:absolute;
-  font-size:30px;
-  animation:burst 1s ease-out forwards;
-}
-
-@keyframes burst{
-  from{transform:scale(0);opacity:1;}
-  to{transform:scale(3);opacity:0;}
-}
+    @keyframes beat {
+        0% { transform: scale(1); }
+        50% { transform: scale(1.3); }
+        100% { transform: scale(1); }
+    }
 </style>
 </head>
-
 <body>
 
-<!-- FIRST SCREEN -->
-<div id="start" class="bg">
-  <h1>Naa Bangaram 💖</h1>
+<h1>Bangaram ❤️ Will you always stay with me?</h1>
 
-  <p>
-    Nee navvu naa jeevitham lo happiness 😍<br>
-    Nuvvu lekapothe naa life empty 💔
-  </p>
+<div id="message"></div>
 
-  <p>Life motham naa tho untava? 💌</p>
+<button id="yesBtn">Yes ❤️</button>
+<button id="noBtn">No 💔</button>
 
-  <button id="yes" onclick="yesClick()">YES ❤️</button>
-</div>
-
-<audio id="music" src="romantic.mp3"></audio>
+<div id="heart">❤️❤️❤️</div>
 
 <script>
-const emojis=["❤️","💖","💕","😍","🥰","💞","💓","💗","💘","💝","😘","💋"];
 
-/* floating emojis */
-setInterval(()=>{
-  const e=document.createElement("div");
-  e.className="emoji";
-  e.innerHTML=emojis[Math.floor(Math.random()*emojis.length)];
-  e.style.left=Math.random()*window.innerWidth+"px";
-  e.style.bottom="-30px";
-  document.body.appendChild(e);
-  setTimeout(()=>e.remove(),6000);
-},250);
+const messages = [
+    "You are my happiness Bangaram ❤️",
+    "My life is beautiful because of you 💖",
+    "You are my dream come true 😘",
+    "I can't imagine my life without you 💕",
+    "You are my forever and always 💞",
+    "You are my heart, my soul, my everything ❤️",
+    "I love you more and more every second 💓",
+    "You are my Bangaram forever 💍"
+];
 
-/* heart explosion */
-function burst(x,y){
-  for(let i=0;i<20;i++){
-    const h=document.createElement("div");
-    h.className="burst";
-    h.innerHTML="💖";
-    h.style.left=x+"px";
-    h.style.top=y+"px";
-    document.body.appendChild(h);
-    setTimeout(()=>h.remove(),1000);
-  }
-}
+const noMessages = [
+    "Are you sure Bangaram? 😢",
+    "Please don't break my heart 💔",
+    "Think again Bangaram 🥺",
+    "I will wait for your Yes ❤️",
+    "You can't escape my love 😄"
+];
 
-function yesClick(){
-  document.getElementById("music").play();
-  burst(window.innerWidth/2,window.innerHeight/2);
+let msgIndex = 0;
+let noIndex = 0;
 
-  document.body.innerHTML=`
-    <div class="bg">
-      <h1>She said YES 😘💖</h1>
+const messageDiv = document.getElementById("message");
+const yesBtn = document.getElementById("yesBtn");
+const noBtn = document.getElementById("noBtn");
+const heart = document.getElementById("heart");
 
-      <p>
-        Nuvvu naa life loki vachaka<br>
-        naa heart ki meaning dorikindi ❤️
-      </p>
 
-      <p>
-        Naa happiness nuvve 😍<br>
-        Naa future kuda nuvve 💞
-      </p>
+// YES button click
+yesBtn.onclick = function() {
 
-      <p>
-        Forever ante nuvvu 💘<br>
-        Nenu ninnu chala premistunna 😘💋
-      </p>
+    if(msgIndex < messages.length) {
+        messageDiv.innerHTML = messages[msgIndex];
+        msgIndex++;
+    } else {
+        messageDiv.innerHTML = "I love you Bangaram forever ❤️❤️❤️";
+        heart.style.display = "block";
+    }
 
-      <p>
-        Ee life motham nee pakkane undali ani<br>
-        naa heart full ga cheptundi 💓
-      </p>
-    </div>
-  `;
-}
+};
+
+
+// NO button hover → move
+noBtn.onmouseover = function() {
+
+    const x = Math.random() * (window.innerWidth - 100);
+    const y = Math.random() * (window.innerHeight - 100);
+
+    noBtn.style.left = x + "px";
+    noBtn.style.top = y + "px";
+
+};
+
+
+// NO button click → different message
+noBtn.onclick = function() {
+
+    if(noIndex < noMessages.length) {
+        messageDiv.innerHTML = noMessages[noIndex];
+        noIndex++;
+    } else {
+        messageDiv.innerHTML = "I know you love me Bangaram 😄❤️";
+    }
+
+};
+
 </script>
 
 </body>
