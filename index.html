@@ -2,162 +2,155 @@
 <html lang="en">
 <head>
 <meta charset="UTF-8">
-<title>Valentine ❤️</title>
-
+<title>Valentine</title>
 <style>
-
-body {
-    margin: 0;
-    padding: 0;
-    height: 100vh;
-    background: linear-gradient(to top, #ffd1dc, #ff8fab);
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    font-family: cursive;
-    overflow: hidden;
-}
-
-.container {
-    text-align: center;
-}
-
-h1 {
-    color: #d63384;
-    font-size: 38px;
-}
-
-p {
-    color: #6c757d;
-    font-size: 18px;
-}
-
-button {
-    padding: 12px 28px;
-    font-size: 18px;
-    border-radius: 25px;
-    border: none;
-    cursor: pointer;
-    margin: 10px;
-}
-
-#yesBtn {
-    background: #ff4d6d;
-    color: white;
-}
-
-#noBtn {
-    background: white;
-    color: #ff4d6d;
-    border: 2px solid #ff4d6d;
-    position: absolute;
-}
-
-.heart {
-    position: absolute;
-    font-size: 20px;
-    color: pink;
-    animation: floatUp 5s linear infinite;
-}
-
-@keyframes floatUp {
-    from {
-        transform: translateY(100vh);
-        opacity: 1;
+    * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+        font-family: "Segoe UI", cursive;
     }
-    to {
-        transform: translateY(-10vh);
-        opacity: 0;
-    }
-}
 
+    body {
+        width: 100vw;
+        height: 100vh;
+        background: linear-gradient(to bottom right, #ffc0cb, #ff6f91);
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        overflow: hidden;
+    }
+
+    .container {
+        text-align: center;
+        color: #b30059;
+    }
+
+    h1 {
+        font-size: 3rem;
+        margin-bottom: 20px;
+    }
+
+    p {
+        font-size: 1.2rem;
+        margin-bottom: 30px;
+    }
+
+    .buttons {
+        display: flex;
+        justify-content: center;
+        gap: 20px;
+    }
+
+    button {
+        padding: 12px 30px;
+        font-size: 18px;
+        border-radius: 25px;
+        border: none;
+        cursor: pointer;
+        transition: 0.3s;
+    }
+
+    .yes {
+        background: #ff3366;
+        color: white;
+    }
+
+    .no {
+        background: white;
+        color: #ff3366;
+        border: 2px solid #ff3366;
+        position: relative;
+    }
+
+    .yes:hover {
+        transform: scale(1.1);
+    }
+
+    .celebration {
+        display: none;
+        text-align: center;
+        color: white;
+        animation: fadeIn 1s ease-in-out;
+    }
+
+    .celebration h1 {
+        font-size: 3rem;
+        margin-bottom: 15px;
+    }
+
+    @keyframes fadeIn {
+        from {opacity: 0;}
+        to {opacity: 1;}
+    }
+
+    .heart {
+        position: absolute;
+        color: red;
+        font-size: 20px;
+        animation: float 5s linear infinite;
+    }
+
+    @keyframes float {
+        from {
+            transform: translateY(100vh);
+            opacity: 1;
+        }
+        to {
+            transform: translateY(-10vh);
+            opacity: 0;
+        }
+    }
 </style>
 </head>
-
 <body>
 
-<div class="container">
+<div class="container" id="main">
+    <h1>💖 Bangaram my wifeyy<br>will you be my Valentine?</h1>
+    <p>I already know the answer, but I still want to hear it 🥺</p>
 
-<h1>
-Bangaram my wifeyy<br>
-will you be my Valentine?
-</h1>
+    <div class="buttons">
+        <button class="yes" onclick="sayYes()">Yes ❤️</button>
+        <button class="no" onmouseover="moveNo()">No 💔</button>
+    </div>
+</div>
 
-<p>I already know the answer, but I still want to hear it 🥺</p>
-
-<button id="yesBtn">Yes 💖</button>
-
-<button id="noBtn">Nope</button>
-
+<div class="celebration" id="celebration">
+    <h1>Yay!! I knew you'd say yes ✨💖</h1>
+    <p>You just made me the happiest person ever! 🥰</p>
+    <p>Now come here and give me a hug 🤗❤️</p>
 </div>
 
 <script>
+function sayYes() {
+    document.getElementById("main").style.display = "none";
+    document.getElementById("celebration").style.display = "block";
+    startHearts();
+}
 
-const noBtn = document.getElementById("noBtn");
-const yesBtn = document.getElementById("yesBtn");
+function moveNo() {
+    const btn = document.querySelector(".no");
+    const x = Math.random() * (window.innerWidth - 100);
+    const y = Math.random() * (window.innerHeight - 50);
+    btn.style.position = "absolute";
+    btn.style.left = x + "px";
+    btn.style.top = y + "px";
+}
 
+function startHearts() {
+    setInterval(() => {
+        const heart = document.createElement("div");
+        heart.className = "heart";
+        heart.innerHTML = "❤️";
+        heart.style.left = Math.random() * window.innerWidth + "px";
+        heart.style.fontSize = Math.random() * 20 + 15 + "px";
+        document.body.appendChild(heart);
 
-// floating hearts (same as template)
-setInterval(() => {
-
-    const heart = document.createElement("div");
-
-    heart.className = "heart";
-
-    heart.innerHTML = "💖";
-
-    heart.style.left = Math.random() * window.innerWidth + "px";
-
-    document.body.appendChild(heart);
-
-    setTimeout(() => {
-        heart.remove();
-    }, 5000);
-
-}, 300);
-
-
-// No button runs away
-noBtn.addEventListener("mouseover", () => {
-
-    const x = Math.random() * (window.innerWidth - 150);
-    const y = Math.random() * (window.innerHeight - 150);
-
-    noBtn.style.left = x + "px";
-    noBtn.style.top = y + "px";
-
-});
-
-
-// Yes button final screen (exact same template)
-yesBtn.addEventListener("click", () => {
-
-    document.body.innerHTML = `
-
-    <div style="
-    height:100vh;
-    display:flex;
-    justify-content:center;
-    align-items:center;
-    flex-direction:column;
-    background: linear-gradient(to top, #ff4d6d, #ff8fab);
-    color:white;
-    font-family:cursive;
-    text-align:center;
-    ">
-
-    <h1>Yay! I knew you'd say yes! 💖</h1>
-
-    <p>You just made me the happiest person ever! 🥰</p>
-
-    <p>Now come here and give me a hug 🤗</p>
-
-    </div>
-
-    `;
-
-});
-
+        setTimeout(() => {
+            heart.remove();
+        }, 5000);
+    }, 300);
+}
 </script>
 
 </body>
