@@ -2,150 +2,160 @@
 <html lang="en">
 <head>
 <meta charset="UTF-8">
-<title>For Bangaram ❤️</title>
+<title>Valentine ❤️</title>
 
 <style>
 
-body{
-    background-color:#ff4d6d;
-    font-family: Arial, sans-serif;
-    text-align:center;
-    color:white;
-    overflow:hidden;
+body {
+  margin: 0;
+  height: 100vh;
+  background: linear-gradient(to top, #ffd1dc, #ff8fab);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-family: cursive;
+  overflow: hidden;
 }
 
-.container{
-    margin-top:100px;
+.container {
+  text-align: center;
 }
 
-h1{
-    font-size:40px;
+h1 {
+  color: #d63384;
+  font-size: 38px;
 }
 
-button{
-
-    font-size:20px;
-    padding:12px 25px;
-    margin:15px;
-    border:none;
-    border-radius:8px;
-    cursor:pointer;
+p {
+  color: #6c757d;
+  font-size: 18px;
 }
 
-#yes{
-    background-color:#28a745;
-    color:white;
+button {
+
+  padding: 12px 28px;
+  font-size: 18px;
+  border-radius: 25px;
+  border: none;
+  cursor: pointer;
+  margin: 10px;
 }
 
-#no{
-    background-color:#dc3545;
-    color:white;
-    position:absolute;
+#yesBtn {
+  background: #ff4d6d;
+  color: white;
 }
 
-#text{
-    font-size:26px;
-    margin-top:20px;
-    min-height:60px;
+#noBtn {
+  background: white;
+  color: #ff4d6d;
+  border: 2px solid #ff4d6d;
+  position: absolute;
+}
+
+.hearts {
+  position: absolute;
+  color: pink;
+  animation: float 5s infinite;
+}
+
+@keyframes float {
+  from {
+    transform: translateY(0);
+    opacity: 1;
+  }
+  to {
+    transform: translateY(-800px);
+    opacity: 0;
+  }
 }
 
 </style>
-
 </head>
+
 <body>
 
-<div class="container">
+<div class="container" id="main">
 
-<h1>Bangaram will you be mine forever? ❤️</h1>
+<h1>
+Bangaram my wifeyy<br>
+will you be my Valentine?
+</h1>
 
-<div id="text"></div>
+<p>I already know the answer, but I still want to hear it 🥺</p>
 
-<button id="yes">Yes ❤️</button>
+<button id="yesBtn">Yes 💖</button>
 
-<button id="no">No 💔</button>
+<button id="noBtn">Nope</button>
 
 </div>
 
 <script>
 
-const yesMessages = [
-
-"I love you Bangaram ❤️",
-
-"You mean everything to me Bangaram 💕",
-
-"I cannot live without you Bangaram 😘",
-
-"You are my future Bangaram 💍",
-
-"You are my life Bangaram ❤️",
-
-// YOUR MESSAGE ADDED HERE (no change to previous flow)
-`Bangaram 🥰 nuvvu na life lo unte edh aina chesta Bujji nuvve kavali ra future lo edh aina problem ravachu rakapovachu kani edh aina problem phase cheyadaniki ready ra Bujji avasaram aite aunty leg patukoniki 🫣aina ready Bujji na self respect 🫂kante nuvve naku important Bujji 😘`
-
-];
-
-const noMessages = [
-
-"Please Bangaram 😢",
-
-"Don't do this Bangaram 💔",
-
-"Think again Bangaram 🥺",
-
-"I will wait Bangaram ❤️",
-
-"You can't escape Bangaram 😄"
-
-];
-
-let yesIndex=0;
-let noIndex=0;
-
-const yesBtn=document.getElementById("yes");
-const noBtn=document.getElementById("no");
-const text=document.getElementById("text");
+const noBtn = document.getElementById("noBtn");
+const yesBtn = document.getElementById("yesBtn");
 
 
-// YES CLICK (same template behavior)
-yesBtn.onclick=function(){
+// No button runs away
+noBtn.addEventListener("mouseover", function() {
 
-if(yesIndex<yesMessages.length){
+const x = Math.random() * (window.innerWidth - 100);
+const y = Math.random() * (window.innerHeight - 100);
 
-text.innerHTML+=yesMessages[yesIndex]+"<br><br>";
+noBtn.style.left = x + "px";
+noBtn.style.top = y + "px";
 
-yesIndex++;
-
-}
-};
-
-
-// NO MOVE (same template behavior)
-noBtn.onmouseover=function(){
-
-let x=Math.random()*(window.innerWidth-100);
-
-let y=Math.random()*(window.innerHeight-100);
-
-noBtn.style.left=x+"px";
-
-noBtn.style.top=y+"px";
-
-};
+});
 
 
-// NO CLICK (same template behavior)
-noBtn.onclick=function(){
+// Yes click final screen
+yesBtn.addEventListener("click", function(){
 
-if(noIndex<noMessages.length){
+document.body.innerHTML = `
 
-text.innerHTML=noMessages[noIndex];
+<div style="
+height:100vh;
+display:flex;
+justify-content:center;
+align-items:center;
+flex-direction:column;
+background: linear-gradient(to top, #ff4d6d, #ff8fab);
+color:white;
+text-align:center;
+font-family:cursive;
+">
 
-noIndex++;
+<h1>Yay! I knew you'd say yes! 💖</h1>
 
-}
+<p>You just made me the happiest person ever! 🥰</p>
 
-};
+<p>Now come here and give me a hug 🤗</p>
+
+</div>
+
+`;
+
+});
+
+
+// floating hearts
+setInterval(() => {
+
+const heart = document.createElement("div");
+
+heart.className = "hearts";
+
+heart.style.left = Math.random() * window.innerWidth + "px";
+
+heart.innerHTML = "💖";
+
+document.body.appendChild(heart);
+
+setTimeout(() => {
+heart.remove();
+}, 5000);
+
+}, 300);
 
 </script>
 
