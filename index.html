@@ -7,67 +7,68 @@
 <style>
 
 body {
-  margin: 0;
-  height: 100vh;
-  background: linear-gradient(to top, #ffd1dc, #ff8fab);
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  font-family: cursive;
-  overflow: hidden;
+    margin: 0;
+    padding: 0;
+    height: 100vh;
+    background: linear-gradient(to top, #ffd1dc, #ff8fab);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-family: cursive;
+    overflow: hidden;
 }
 
 .container {
-  text-align: center;
+    text-align: center;
 }
 
 h1 {
-  color: #d63384;
-  font-size: 38px;
+    color: #d63384;
+    font-size: 38px;
 }
 
 p {
-  color: #6c757d;
-  font-size: 18px;
+    color: #6c757d;
+    font-size: 18px;
 }
 
 button {
-
-  padding: 12px 28px;
-  font-size: 18px;
-  border-radius: 25px;
-  border: none;
-  cursor: pointer;
-  margin: 10px;
+    padding: 12px 28px;
+    font-size: 18px;
+    border-radius: 25px;
+    border: none;
+    cursor: pointer;
+    margin: 10px;
 }
 
 #yesBtn {
-  background: #ff4d6d;
-  color: white;
+    background: #ff4d6d;
+    color: white;
 }
 
 #noBtn {
-  background: white;
-  color: #ff4d6d;
-  border: 2px solid #ff4d6d;
-  position: absolute;
+    background: white;
+    color: #ff4d6d;
+    border: 2px solid #ff4d6d;
+    position: absolute;
 }
 
-.hearts {
-  position: absolute;
-  color: pink;
-  animation: float 5s infinite;
+.heart {
+    position: absolute;
+    font-size: 20px;
+    color: pink;
+    animation: floatUp 5s linear infinite;
 }
 
-@keyframes float {
-  from {
-    transform: translateY(0);
-    opacity: 1;
-  }
-  to {
-    transform: translateY(-800px);
-    opacity: 0;
-  }
+@keyframes floatUp {
+    from {
+        transform: translateY(100vh);
+        opacity: 1;
+    }
+    to {
+        transform: translateY(-10vh);
+        opacity: 0;
+    }
 }
 
 </style>
@@ -75,7 +76,7 @@ button {
 
 <body>
 
-<div class="container" id="main">
+<div class="container">
 
 <h1>
 Bangaram my wifeyy<br>
@@ -96,66 +97,66 @@ const noBtn = document.getElementById("noBtn");
 const yesBtn = document.getElementById("yesBtn");
 
 
-// No button runs away
-noBtn.addEventListener("mouseover", function() {
-
-const x = Math.random() * (window.innerWidth - 100);
-const y = Math.random() * (window.innerHeight - 100);
-
-noBtn.style.left = x + "px";
-noBtn.style.top = y + "px";
-
-});
-
-
-// Yes click final screen
-yesBtn.addEventListener("click", function(){
-
-document.body.innerHTML = `
-
-<div style="
-height:100vh;
-display:flex;
-justify-content:center;
-align-items:center;
-flex-direction:column;
-background: linear-gradient(to top, #ff4d6d, #ff8fab);
-color:white;
-text-align:center;
-font-family:cursive;
-">
-
-<h1>Yay! I knew you'd say yes! 💖</h1>
-
-<p>You just made me the happiest person ever! 🥰</p>
-
-<p>Now come here and give me a hug 🤗</p>
-
-</div>
-
-`;
-
-});
-
-
-// floating hearts
+// floating hearts (same as template)
 setInterval(() => {
 
-const heart = document.createElement("div");
+    const heart = document.createElement("div");
 
-heart.className = "hearts";
+    heart.className = "heart";
 
-heart.style.left = Math.random() * window.innerWidth + "px";
+    heart.innerHTML = "💖";
 
-heart.innerHTML = "💖";
+    heart.style.left = Math.random() * window.innerWidth + "px";
 
-document.body.appendChild(heart);
+    document.body.appendChild(heart);
 
-setTimeout(() => {
-heart.remove();
-}, 5000);
+    setTimeout(() => {
+        heart.remove();
+    }, 5000);
 
 }, 300);
+
+
+// No button runs away
+noBtn.addEventListener("mouseover", () => {
+
+    const x = Math.random() * (window.innerWidth - 150);
+    const y = Math.random() * (window.innerHeight - 150);
+
+    noBtn.style.left = x + "px";
+    noBtn.style.top = y + "px";
+
+});
+
+
+// Yes button final screen (exact same template)
+yesBtn.addEventListener("click", () => {
+
+    document.body.innerHTML = `
+
+    <div style="
+    height:100vh;
+    display:flex;
+    justify-content:center;
+    align-items:center;
+    flex-direction:column;
+    background: linear-gradient(to top, #ff4d6d, #ff8fab);
+    color:white;
+    font-family:cursive;
+    text-align:center;
+    ">
+
+    <h1>Yay! I knew you'd say yes! 💖</h1>
+
+    <p>You just made me the happiest person ever! 🥰</p>
+
+    <p>Now come here and give me a hug 🤗</p>
+
+    </div>
+
+    `;
+
+});
 
 </script>
 
